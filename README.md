@@ -92,7 +92,7 @@ Multiple `@Hook` method can be defined, and you can specify the execution order 
 
 ## @Call
 
-If you don't mind altering arguments nor the return value, you can use `@Call` annotations. Since `@Call` methods will be invoked first (i.e before any `@Hook` annotated methods), you can be sure that arguments have not been altered.
+If you don't mind altering arguments nor the return value, you can use `@Call` annotations instead. Since `@Call` methods will be invoked first (i.e before any `@Hook` annotated methods), you can be sure that arguments have not been altered.
 
 ```java
  	@Call("my_hook")
