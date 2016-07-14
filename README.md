@@ -10,6 +10,7 @@ Minimalist, annotation based, hook framework for Android built on top of [Aspect
     * [@Before](#before)
     * [@After](#after)
     * [@Returning](#returning)
+    * [@Register/@Unregister](#register--unregister)
 * [Advanced Usage](#advanced-usage)
 * [Installation](#installation)
 
