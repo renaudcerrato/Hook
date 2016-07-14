@@ -65,7 +65,18 @@ By annotating arguments using `@Param` annotations, you'll be able to easily cap
 
 ## @Hook
 
-By using `@Hook` annotations, you're given a chance to alter arguments and/or the return value of the original `@Hooked` method. `@Hook` annotated methods have a mandatory first arguments of type [`HookedMethod`](https://github.com/renaudcerrato/Hook/blob/master/runtime/src/main/java/com/mypopsy/hook/HookedMethod.java). **Multiple `@Hook` method can be defined, and you can specify the execution order using the `priority` parameter**:
+By using `@Hook` annotations, you're given a chance to alter arguments and/or the return value of the original `@Hooked` method. `@Hook` annotated methods have a mandatory first arguments of type [`HookedMethod`](https://github.com/renaudcerrato/Hook/blob/master/runtime/src/main/java/com/mypopsy/hook/HookedMethod.java). 
+
+You can easily capture arguments by using `@Param` annotations and you can also capture the enclosing object of the `@Hooked` method using the `@Target` annotation:
+
+```java
+	@Hook("my_hook")
+    int hook(HookedMethod<Integer> method, @Param("a") int a, @Param("b") int b, @Target Math math) throws Throwable {
+        return method.proceed(2*a, 2*b); // double operands
+    }
+```
+
+Multiple `@Hook` method can be defined, and you can specify the execution order using the `priority` parameter:
 
 ```java
 	@Hook(value="my_hook", priority=1000)
@@ -78,16 +89,6 @@ By using `@Hook` annotations, you're given a chance to alter arguments and/or th
         return method.proceed();
     }
 ```
-
-You can easily capture arguments by using `@Param` annotations and you can also capture the enclosing object of the `@Hooked` method using the `@Target` annotation:
-
-```java
-	@Hook("my_hook")
-    int hook(HookedMethod<Integer> method, @Param("a") int a, @Param("b") int b, @Target Math math) throws Throwable {
-        return method.proceed();
-    }
-```
-
 
 ## @Call
 
