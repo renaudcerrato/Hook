@@ -42,7 +42,7 @@ By annotating arguments using `@Param` annotations, you'll be able to easily cap
 
 ## @Hook
 
-By using `@Hook` annotations, you're given a chance to alter arguments and/or the return value of the original hooked method. `@Hook` annotated methods have a mandatory first arguments of type [`HookedMethod`](https://github.com/renaudcerrato/Hook/blob/master/runtime/src/main/java/com/mypopsy/hook/HookedMethod.java).
+By using `@Hook` annotations, you're given a chance to alter arguments and/or the return value of the original `@Hooked` method. `@Hook` annotated methods have a mandatory first arguments of type [`HookedMethod`](https://github.com/renaudcerrato/Hook/blob/master/runtime/src/main/java/com/mypopsy/hook/HookedMethod.java).
 
 You can capture arguments by using `@Param` annotations on them, and you can capture the object on which the method is executing using the `@Target` annotation:
 
