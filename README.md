@@ -2,6 +2,15 @@
 
 Minimalist, annotation based, hook framework for Android built on top of [AspectJ](https://eclipse.org/aspectj/). 
 
+* [Basic Usage](#basic-usage)
+* [Why?](#why)
+* [Annotations](#annotations)
+* [Installation](#installation)
+
+# Why? 
+While [AOP](https://en.wikipedia.org/wiki/Aspect-oriented_programming) (and its Java implementation [AspectJ](https://eclipse.org/aspectj/)) is sexy, its learning curve still requires a lot of efforts. That library is a tiny layer on top of AspectJ execution hooks.
+
+
 # Basic Usage
 
 ```java
@@ -32,12 +41,7 @@ assertThat(math.add(5, 3), is(8)); // 5 + 3 = 8
 
 ```
 
-# Why?
-
-While [AOP](https://en.wikipedia.org/wiki/Aspect-oriented_programming) (and its Java implementation [AspectJ](https://eclipse.org/aspectj/)) is sexy, its learning curve still requires a lot of efforts. Hook is a tiny layer on top of AspectJ's method hooks that will, hopefully, give you a taste of AOP.
-
-
-# How?
+# Annotations
 
 Hook let you easily hooks into methods using simple annotations:
 
@@ -172,7 +176,9 @@ exiting @Hook (return 17)
 ```
 
 
-# Android Studio
+# Installation
+
+## Android Studio
 
 The project binaries are hosted on [JitPack](https://jitpack.io): the Android integration is made easy thanks to the use of a custom gradle plugin.
 
