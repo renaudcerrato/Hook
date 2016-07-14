@@ -1,0 +1,31 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.2'
+    }
+}
+
+allprojects {
+
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+
+ext {
+    ASPECTJ_VERSION = '1.8.9'
+}
+
+ext.deps = [
+        aspectj: [
+                core: "org.aspectj:aspectjrt:${ext.ASPECTJ_VERSION}",
+                tools: "org.aspectj:aspectjtools:${ext.ASPECTJ_VERSION}",
+        ],
+]
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
