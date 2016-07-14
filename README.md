@@ -36,8 +36,9 @@ assertThat(math.add(5, 3), is(8)); // 5 + 3 = 8
 
 ## @Hooked
 
-In order to be able to hook a method, you must annotate them as `@Hooked`, and give them an **unique** name. If you defines more than one `@Hooked` method with the same name, _reaaaally bad things can happen_. 
+In order to be able to hook a method, you must annotate them as `@Hooked`, and give them an **unique** name. If you define more than one `@Hooked` method with the same name, _reaaaally bad things can happen_. 
 
+By annotating arguments using `@Param` annotations, you'll be able to easily capture the arguments by name instead of relying on their order.
 
 ## @Hook
 
@@ -55,22 +56,51 @@ You can capture arguments by using `@Param` annotations on them, and you can cap
 
 ## @Call
 
-If you don't mind altering arguments or the return value, you can use `@Call` annotations. Since `@Call` methods will be invoked first (i.e before `@Hook` annotated method(s)), you can be sure that arguments have not been altered.
+If you don't mind altering arguments or the return value, you can use `@Call` annotations. Since `@Call` methods will be invoked first (i.e before any `@Hook` annotated methods), you can be sure that arguments have not been altered.
+
+```
+ 	@Call("my_hook")
+    void call(int a, int b) {
+        ...
+    }
+```
 
 ## @Before
 
 `@Before` annotated methods are called right **before** the original method is called - that mean that both `@Call` and `@Hook` method(s) were called already, possibly altering arguments. Of course, `@Before` methods are **not called** if a single `@Hook` method didn't called `HookedMethod::proceed()`.
 
+```
+	@Before("my_hook")
+    void before(int a, int b) {
+        ...
+    }
+```
+
 ## @After
 
 `@After` annotated methods are called right **after** the original method is called - but before `@Hook` annotated methods returns. Of course, `@After` methods are **not called** if a single `@Hook` method didn't called `HookedMethod::proceed()`.
 
-You can capture the return value using the `@Result` annotation.
+You can capture the return value using the `@Result` annotation:
+
+```
+ 	@After("my_hook")
+    void after(@Param("a") int a, @Param("b") int b, @Target Math math, @Result int result) {
+        ...
+    }
+```    
 
 * `@Returning`
 
 `@Returning` annotated methods are call right **before** returning to the original caller. 
-You can capture the return value using the `@Result` annotation.
+
+You can capture the return value using the `@Result` annotation:
+
+```
+	@Returning("my_hook")
+    void returning(@Param("a") int a, @Param("b") int b, @Result int result) {
+        ...
+    }
+```
 
 # Advanced Usage
 
