@@ -32,15 +32,45 @@ assertThat(math.add(5, 3), is(8)); // 5 + 3 = 8
 
 ```
 
-# Annotations
+# Available Annotations
 
-* `@Hooked`
-* `@Hook`
-* `@Call`
-* `@Before`
-* `@After`
+## @Hooked
+
+In order to be able to hook a method, you must annotate them as `@Hooked`, and give them an **unique** name. If you defines more than one `@Hooked` method with the same name, _reaaaally bad things can happen_. 
+
+
+## @Hook
+
+By using `@Hook` annotations, you're given a chance to alter arguments and/or the return value of the original hooked method. `@Hook` annotated methods have a mandatory first arguments of type [`HookedMethod`](https://github.com/renaudcerrato/Hook/blob/master/runtime/src/main/java/com/mypopsy/hook/HookedMethod.java).
+
+You can capture arguments by using `@Param` annotations on them, and you can capture the object on which the method is executing using the `@Target` annotation:
+
+```
+	@Hook("my_hook")
+    int hook(HookedMethod<Integer> method, @Param("a") int a, @Param("b") int b, @Target Math math) throws Throwable {
+        return method.proceed();
+    }
+```
+
+
+## @Call
+
+If you don't mind altering arguments or the return value, you can use `@Call` annotations. Since `@Call` methods will be invoked first (i.e before `@Hook` annotated method(s)), you can be sure that arguments have not been altered.
+
+## @Before
+
+`@Before` annotated methods are called right **before** the original method is called - that mean that both `@Call` and `@Hook` method(s) were called already, possibly altering arguments. Of course, `@Before` methods are **not called** if a single `@Hook` method didn't called `HookedMethod::proceed()`.
+
+## @After
+
+`@After` annotated methods are called right **after** the original method is called - but before `@Hook` annotated methods returns. Of course, `@After` methods are **not called** if a single `@Hook` method didn't called `HookedMethod::proceed()`.
+
+You can capture the return value using the `@Result` annotation.
+
 * `@Returning`
 
+`@Returning` annotated methods are call right **before** returning to the original caller. 
+You can capture the return value using the `@Result` annotation.
 
 # Advanced Usage
 
@@ -87,11 +117,11 @@ public class Hooks {
 }
 
 final Math math = new Math();
-final Hooks hook = new Hooks();
+final Hooks hooks = new Hooks();
 
-Hooker.instance().register(hook);
+Hooker.instance().register(hooks);
 assertThat(math.add(5, 3), is(17));
-Hooker.instance().unregister(hook);
+Hooker.instance().unregister(hooks);
 ```
 
 For clarity, here's the output of the snippet above :
@@ -111,7 +141,7 @@ exiting @Hook (return 17)
 
 The project binaries are hosted on [JitPack](https://jitpack.io): the Android integration is made easy thanks to the use of a custom gradle plugin.
 
-*Step 1* Import the plugin in your root build.gradle at the `buildscript` closure:
+**Step 1** Import the plugin in your root build.gradle at the `buildscript` closure:
 
 ```
 buildscript {
@@ -126,7 +156,7 @@ buildscript {
 }
 ```
 
-*Step 2* Add it in your root build.gradle at the end of repositories:
+**Step 2** Add it in your root build.gradle at the end of repositories:
 ```
 allprojects {
 	repositories {
@@ -136,7 +166,7 @@ allprojects {
 }
 ```
 
-*Step 3* Apply the plugin in your app build.gradle:
+**Step 3** Apply the plugin in your app build.gradle:
 
 ```
 apply plugin: 'com.android.application'
