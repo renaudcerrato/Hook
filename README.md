@@ -52,7 +52,14 @@ Hook let you easily hook into methods using simple annotations:
 
 In order to be able to hook a method, you must annotate them as `@Hooked`, and give them a **unique** name. If you define more than one `@Hooked` method with the same name, _reaaaally bad things can happen_. 
 
-By annotating arguments using `@Param` annotations, you'll be able to easily capture the arguments by name instead of relying on their order.
+By annotating arguments using `@Param` annotations, you'll be able to easily capture the arguments by name instead of relying on their order:
+
+```java
+	@Hooked("my_hook")
+    public int add(@Param("a") int a, @Param("b") int b) {
+        return a+b;
+    }
+```
 
 ## @Hook
 
