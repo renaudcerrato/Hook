@@ -3,13 +3,15 @@
 Minimalist, annotation based, hook framework for Android built on top of [AspectJ](https://eclipse.org/aspectj/). 
 
 * [Basic Usage](#basic-usage)
-* [Why?](#why)
 * [Annotations](#annotations)
+    * [@Hooked](#hooked)
+    * [@Hook](#hook-1)
+    * [@Call](#call)
+    * [@Before](#before)
+    * [@After](#after)
+    * [@Returning](#returning)
+* [Advanced Usage](#advanced-usage)
 * [Installation](#installation)
-
-# Why? 
-While [AOP](https://en.wikipedia.org/wiki/Aspect-oriented_programming) (and its Java implementation [AspectJ](https://eclipse.org/aspectj/)) is sexy, its learning curve still requires a lot of efforts. That library is a tiny layer on top of AspectJ execution hooks.
-
 
 # Basic Usage
 
