@@ -1,6 +1,6 @@
 # Hook
 
-Minimalist, annotation based, hook framework for Android built on top of [AspectJ](https://eclipse.org/aspectj/).
+Minimalist, annotation based, hook framework for Android built on top of [AspectJ](https://eclipse.org/aspectj/). 
 
 # Basic Usage
 
@@ -32,7 +32,14 @@ assertThat(math.add(5, 3), is(8)); // 5 + 3 = 8
 
 ```
 
-# Available Annotations
+# Why?
+
+While [AOP](https://en.wikipedia.org/wiki/Aspect-oriented_programming) (and its Java implementation [AspectJ](https://eclipse.org/aspectj/)) is sexy, its learning curve still requires a lot of efforts. Hook is a tiny layer on top of AspectJ's method hooks that will, hopefully, give you a taste of AOP.
+
+
+# How?
+
+Hook let you easily hooks into methods using simple annotations:
 
 ## @Hooked
 
