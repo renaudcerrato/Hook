@@ -46,11 +46,11 @@ assertThat(math.add(5, 3), is(8)); // 5 + 3 = 8
 
 # Annotations
 
-Hook let you easily hooks into methods using simple annotations:
+Hook let you easily hook into methods using simple annotations:
 
 ## @Hooked
 
-In order to be able to hook a method, you must annotate them as `@Hooked`, and give them an **unique** name. If you define more than one `@Hooked` method with the same name, _reaaaally bad things can happen_. 
+In order to be able to hook a method, you must annotate them as `@Hooked`, and give them a **unique** name. If you define more than one `@Hooked` method with the same name, _reaaaally bad things can happen_. 
 
 By annotating arguments using `@Param` annotations, you'll be able to easily capture the arguments by name instead of relying on their order.
 
@@ -58,7 +58,7 @@ By annotating arguments using `@Param` annotations, you'll be able to easily cap
 
 By using `@Hook` annotations, you're given a chance to alter arguments and/or the return value of the original `@Hooked` method. `@Hook` annotated methods have a mandatory first arguments of type [`HookedMethod`](https://github.com/renaudcerrato/Hook/blob/master/runtime/src/main/java/com/mypopsy/hook/HookedMethod.java).
 
-You can capture arguments by using `@Param` annotations on them, and you can capture the object on which the method is executing using the `@Target` annotation:
+You can easily capture arguments by using `@Param` annotations, and you can capture the enclosing object of the `@Hooked` method using the `@Target` annotation:
 
 ```
 	@Hook("my_hook")
@@ -81,7 +81,7 @@ If you don't mind altering arguments nor the return value, you can use `@Call` a
 
 ## @Before
 
-`@Before` annotated methods are called right **before** the original method is called - that mean that both `@Call` and `@Hook` method(s) were called already, possibly altering arguments during the laters. Of course, `@Before` methods are **not called** if a single `@Hook` method didn't called `HookedMethod::proceed()`.
+`@Before` annotated methods are called right **before** the original method is called - that mean that both `@Call` and `@Hook` method(s) were called already (possibly altering arguments). Of course, `@Before` methods are **won't be called** if a single `@Hook` method didn't called `HookedMethod::proceed()`.
 
 ```
 	@Before("my_hook")
@@ -92,20 +92,20 @@ If you don't mind altering arguments nor the return value, you can use `@Call` a
 
 ## @After
 
-`@After` annotated methods are called right **after** the original method is called - but before `@Hook` annotated methods returns. Of course, `@After` methods are **not called** if a single `@Hook` method didn't called `HookedMethod::proceed()`.
+`@After` annotated methods are called right **after** the original method is called - but before `@Hook` annotated methods returns. Of course, `@After` methods are **won't be called** if a single `@Hook` method didn't called `HookedMethod::proceed()`.
 
 You can capture the return value using the `@Result` annotation:
 
 ```
  	@After("my_hook")
-    void after(@Param("a") int a, @Param("b") int b, @Target Math math, @Result int result) {
+    void after(@Param("a") int a, @Param("b") int b, @Target Object object, @Result int result) {
         ...
     }
 ```    
 
 ## @Returning
 
-`@Returning` annotated methods are call right **before** returning to the original caller. You can capture the return value using the `@Result` annotation:
+`@Returning` annotated methods are called right **before** returning to the original caller. You can capture the return value using the `@Result` annotation:
 
 ```
 	@Returning("my_hook")
@@ -123,15 +123,15 @@ You can capture the return value using the `@Result` annotation:
 ```
 public class MainActivity extends Activity {
 
-	@Override
     @Register
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
 
-    @Override
     @Unregister
+    @Override
     protected void onDestroy() {
         super.onDestroy();
     }
