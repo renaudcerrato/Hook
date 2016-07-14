@@ -70,7 +70,7 @@ By using `@Hook` annotations, you're given a chance to alter arguments and/or th
     }
 ```
 
-You can easily capture arguments by using `@Param` annotations and you can capture the enclosing object of the `@Hooked` method using the `@Target` annotation:
+You can easily capture arguments by using `@Param` annotations and you can also capture the enclosing object of the `@Hooked` method using the `@Target` annotation:
 
 ```java
 	@Hook("my_hook")
@@ -91,9 +91,11 @@ If you don't mind altering arguments nor the return value, you can use `@Call` a
     }
 ```
 
+Both `@Param` and `@Target` capture annotations are supported.
+
 ## @Before
 
-`@Before` annotated methods are called right **before** the original method is called - that mean that both `@Call` and `@Hook` method(s) were called already (possibly altering arguments). Of course, `@Before` methods are **won't be called** if a single `@Hook` method didn't called `HookedMethod::proceed()`.
+`@Before` annotated methods are called right **before** the original method is called - that mean that both `@Call` and `@Hook` method(s) were called already (possibly altering arguments). Of course, `@Before` methods are **won't be called** if a single `@Hook` method didn't called `HookedMethod::proceed()`. 
 
 ```java
 	@Before("my_hook")
@@ -101,6 +103,8 @@ If you don't mind altering arguments nor the return value, you can use `@Call` a
         ...
     }
 ```
+
+Both `@Param` and `@Target` capture annotations are supported.
 
 ## @After
 
@@ -115,6 +119,8 @@ You can capture the return value using the `@Result` annotation:
     }
 ```    
 
+Both `@Param` and `@Target` capture annotations are also supported.
+
 ## @Returning
 
 `@Returning` annotated methods are called right **before** returning to the original caller. You can capture the return value using the `@Result` annotation:
@@ -125,6 +131,8 @@ You can capture the return value using the `@Result` annotation:
         ...
     }
 ```
+
+Both `@Param` and `@Target` capture annotations are also supported.
 
 ## @Register / @Unregister 
 
