@@ -89,11 +89,9 @@ You can capture the return value using the `@Result` annotation:
     }
 ```    
 
-* `@Returning`
+## @Returning
 
-`@Returning` annotated methods are call right **before** returning to the original caller. 
-
-You can capture the return value using the `@Result` annotation:
+`@Returning` annotated methods are call right **before** returning to the original caller. You can capture the return value using the `@Result` annotation:
 
 ```
 	@Returning("my_hook")
