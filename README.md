@@ -1,6 +1,6 @@
 # Hook
 
-Minimalist, annotation based, hook framework for Java/Android built on top of [AspectJ](https://eclipse.org/aspectj/).
+Minimalist, annotation based, hook framework for Android built on top of [AspectJ](https://eclipse.org/aspectj/).
 
 # Basic Usage
 
@@ -31,6 +31,16 @@ Hooker.instance().unregister(hook);
 assertThat(math.add(5, 3), is(8)); // 5 + 3 = 8    
 
 ```
+
+# Annotations
+
+* `@Hooked`
+* `@Hook`
+* `@Call`
+* `@Before`
+* `@After`
+* `@Returning`
+
 
 # Advanced Usage
 
@@ -96,11 +106,43 @@ exiting @Hook (return 17)
 @Returning(a=10, b=6, result=17)
 ```
 
-# Installation
 
-## Android Studio (Gradle)
-TODO
- 
+# Android Studio
+
+The project binaries are hosted on [JitPack](https://jitpack.io): the Android integration is made easy thanks to the use of a custom gradle plugin.
+
+*Step 1* Import the plugin in your root build.gradle at the `buildscript` closure:
+
+```
+buildscript {
+    repositories {
+        ...
+        maven { url "https://jitpack.io" }
+    }
+    dependencies {
+        ...
+        classpath 'com.github.renaudcerrato.Hook:plugin:1.0.0'
+    }
+}
+```
+
+*Step 2* Add it in your root build.gradle at the end of repositories:
+```
+allprojects {
+	repositories {
+		...
+		maven { url "https://jitpack.io" }
+	}
+}
+```
+
+*Step 3* Apply the plugin in your app build.gradle:
+
+```
+apply plugin: 'com.android.application'
+apply plugin: 'hook'
+...
+```
 
 
 
