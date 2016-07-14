@@ -1,3 +1,5 @@
+[![](https://jitpack.io/v/renaudcerrato/Hook.svg)](https://jitpack.io/#renaudcerrato/Hook)
+
 # Hook
 
 Minimalist, annotation based, hook framework for Android built on top of [AspectJ](https://eclipse.org/aspectj/). 
