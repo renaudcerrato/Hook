@@ -104,7 +104,7 @@ Both `@Param` and `@Target` capture annotations are supported.
 
 ## @Before
 
-`@Before` annotated methods are called right **before** the original method is called - that mean that both `@Call` and `@Hook` method(s) were called already (possibly altering arguments). Of course, `@Before` methods are **won't be called** if a single `@Hook` method didn't called `HookedMethod::proceed()`. 
+`@Before` annotated methods are called right **before** the original method is called - that mean that both `@Call` and `@Hook` method(s) were called already (possibly altering arguments). Of course, `@Before` methods **won't be called** if a single `@Hook` method didn't called `HookedMethod::proceed()`. 
 
 ```java
 	@Before("my_hook")
@@ -117,7 +117,7 @@ Both `@Param` and `@Target` capture annotations are supported.
 
 ## @After
 
-`@After` annotated methods are called right **after** the original method is called - but before `@Hook` annotated methods returns. Of course, `@After` methods are **won't be called** if a single `@Hook` method didn't called `HookedMethod::proceed()`.
+`@After` annotated methods are called right **after** the original method is called - but before `@Hook` annotated methods returns. Of course, `@After` methods **won't be called** if a single `@Hook` method didn't called `HookedMethod::proceed()`.
 
 You can capture the return value using the `@Result` annotation:
 
