@@ -56,7 +56,7 @@ You can capture arguments by using `@Param` annotations on them, and you can cap
 
 ## @Call
 
-If you don't mind altering arguments or the return value, you can use `@Call` annotations. Since `@Call` methods will be invoked first (i.e before any `@Hook` annotated methods), you can be sure that arguments have not been altered.
+If you don't mind altering arguments nor the return value, you can use `@Call` annotations. Since `@Call` methods will be invoked first (i.e before any `@Hook` annotated methods), you can be sure that arguments have not been altered.
 
 ```
  	@Call("my_hook")
@@ -67,7 +67,7 @@ If you don't mind altering arguments or the return value, you can use `@Call` an
 
 ## @Before
 
-`@Before` annotated methods are called right **before** the original method is called - that mean that both `@Call` and `@Hook` method(s) were called already, possibly altering arguments. Of course, `@Before` methods are **not called** if a single `@Hook` method didn't called `HookedMethod::proceed()`.
+`@Before` annotated methods are called right **before** the original method is called - that mean that both `@Call` and `@Hook` method(s) were called already, possibly altering arguments during the laters. Of course, `@Before` methods are **not called** if a single `@Hook` method didn't called `HookedMethod::proceed()`.
 
 ```
 	@Before("my_hook")
