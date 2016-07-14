@@ -113,6 +113,31 @@ You can capture the return value using the `@Result` annotation:
     }
 ```
 
+## @Register / @Unregister 
+
+`@Register` annotated methods will automatically register the enclosing instance **right before** execution, exactly in the same way as if `Hooker.instance().register(this)` were called on the instance.
+
+`@Unregister` annotated methods will automatically unregister the enclosing instance **right after** execution, exactly in the same way as if `Hooker.instance().unregister(this)` were called on the instance.
+
+```
+public class MainActivity extends Activity {
+
+	@Override
+    @Register
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    @Unregister
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+    ...
+}
+```
+
 # Advanced Usage
 
 ```java
