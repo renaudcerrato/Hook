@@ -255,7 +255,7 @@ buildscript {
 }
 ```
 
-**Step 2** Add it in your root build.gradle at the end of repositories:
+**Step 2** Add Jitpack in your root build.gradle at the end of repositories:
 ```gradle
 allprojects {
 	repositories {
