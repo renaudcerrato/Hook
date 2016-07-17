@@ -52,9 +52,9 @@ Hook let you easily hook into methods using simple annotations:
 
 ## @Hooked
 
-In order to be able to hook methods, you must annotate them as `@Hooked`.
+In order to be able to hook a methods, you must annotate it as `@Hooked`.
 
-By annotating arguments using `@Param` annotations, you'll be later able to easily capture the arguments by name (instead of relying on their declaration order) :
+By annotating arguments using `@Param` annotations, you'll be later able to easily capture them by name (instead of relying on their declaration order) :
 
 ```java
 	@Hooked("my_hook")
