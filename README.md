@@ -53,7 +53,7 @@ Hook let you easily hook into methods using simple annotations:
 
 ## @Hooked
 
-In order to be able to hook a methods, you must annotate it as `@Hooked`.
+In order to be able to hook a method, you must annotate it as `@Hooked`.
 
 By annotating arguments using `@Param` annotations, you'll be later able to easily capture them by name (instead of relying on their declaration order) :
 
