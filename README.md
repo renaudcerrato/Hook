@@ -15,6 +15,7 @@ Minimalist, annotation based, hook framework for Android built on top of [Aspect
     * [@Register/@Unregister](#register--unregister)
 * [Advanced Usage](#advanced-usage)
 * [Installation](#installation)
+* [Proguard](#proguard)
 
 # Basic Usage
 
@@ -271,6 +272,18 @@ allprojects {
 apply plugin: 'com.android.application'
 apply plugin: 'hook'
 ...
+```
+
+# Proguard
+
+Make sure your proguard rule set includes following lines:
+
+```proguard
+-keep class com.mypopsy.hook.** { *; }
+
+-keepclasseswithmembernames class * {
+    @com.mypopsy.hook.** <methods>;
+}
 ```
 
 
